@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by Sina on 12/26/2016.
+ * Created by Sina on 12/26/2016
  */
 
 public class MyCustomAdapter extends BaseAdapter {

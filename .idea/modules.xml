@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SimpleMessenger.iml" filepath="$PROJECT_DIR$/SimpleMessenger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidClientSimpleMessenger.iml" filepath="$PROJECT_DIR$/AndroidClientSimpleMessenger.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
