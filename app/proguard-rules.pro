@@ -1,8 +1,8 @@
 # Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in D:\Users\Darvishi\Documents\SoftWare\WORK\SDK/tools/proguard/proguard-android.txt
+# By default, the flags bufferedReader this file are appended to flags specified
+# bufferedReader D:\Users\Darvishi\Documents\SoftWare\WORK\SDK/tools/proguard/proguard-android.txt
 # You can edit the include path and order by changing the proguardFiles
-# directive in build.gradle.
+# directive bufferedReader build.gradle.
 #
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
