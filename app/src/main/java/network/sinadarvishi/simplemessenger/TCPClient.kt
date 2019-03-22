@@ -14,13 +14,15 @@ import java.net.Socket
  * Created by Sina on 12/26/2016.
  */
 
-class TCPClient(val serverIP: String,val serverPort: String, listener: OnMessageReceived) {
-    private var serverMessage: String? = null
-    private var mMessageListener: OnMessageReceived? = null
-    private var mRun = false
+class TCPClient(private val serverIP: String,
+                private val serverPort: String,
+                private val listener: OnMessageReceived) {
 
-    internal var printWriter: PrintWriter? = null
-    internal var bufferedReader: BufferedReader? = null
+    private var serverMessage: String? = null
+    private var run = false
+
+    private lateinit var printWriter: PrintWriter
+    private lateinit var bufferedReader: BufferedReader
 
 
     //Declare the interface. The method messageReceived(String message) will must be implemented bufferedReader the MyActivity
@@ -29,37 +31,34 @@ class TCPClient(val serverIP: String,val serverPort: String, listener: OnMessage
         fun messageReceived(message: String)
     }
 
-    init {
-        mMessageListener = listener
-    }
 
     /**
      * Sends the message entered by client to the server
      * @param message text entered by client
      */
     fun sendMessage(message: String) {
-        if (printWriter != null && !printWriter!!.checkError()) {
-            printWriter!!.println(message)
-            printWriter!!.flush()
+        if (!printWriter.checkError()) {
+            printWriter.println(message)
+            printWriter.flush()
         }
     }
 
     fun stopClient() {
-        mRun = false
+        run = false
     }
 
     fun run() {
 
-        mRun = true
+        run = true
 
         try {
             //here you must put your computer's IP address.
-            val serverAddr = InetAddress.getByName(serverIP)
+            val serverAddress = InetAddress.getByName(serverIP)
 
             Log.e("TCP Client", "C: Connecting...")
 
             //create a socket to make the connection with the server
-            val socket = Socket(serverAddr, serverPort.toInt())
+            val socket = Socket(serverAddress, serverPort.toInt())
 
             try {
 
@@ -72,14 +71,12 @@ class TCPClient(val serverIP: String,val serverPort: String, listener: OnMessage
 
                 //receive the message which the server sends back
                 bufferedReader = BufferedReader(InputStreamReader(socket.getInputStream()))
-
                 //bufferedReader this while the client listens for the messages sent by the server
-                while (mRun) {
-                    serverMessage = bufferedReader?.readLine()
-
-                    if (serverMessage != null && mMessageListener != null) {
+                while (run) {
+                    serverMessage = bufferedReader.readLine()
+                    if (serverMessage != null) {
                         //call the method messageReceived from MyActivity class
-                        mMessageListener!!.messageReceived(serverMessage!!)
+                        listener.messageReceived(serverMessage!!)
                     }
                     serverMessage = null
 

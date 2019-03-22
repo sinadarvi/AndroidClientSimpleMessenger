@@ -13,7 +13,7 @@ import java.util.ArrayList
 /**
  * Created by Sina on 12/26/2016
  */
-
+//TODO : should use RecyclerView instead of listAdapter
 class MyCustomAdapter(context: Context, private val listItems: ArrayList<String>) : BaseAdapter() {
 
     //get the layout inflater
@@ -38,7 +38,7 @@ class MyCustomAdapter(context: Context, private val listItems: ArrayList<String>
     override fun getView(position: Int, view: View?, viewGroup: ViewGroup): View? {
         var newView = view
         //check to see if the reused view is null or not, if is not null then reuse it
-        if (newView == null) {
+        newView?.let {
             newView = mLayoutInflater.inflate(R.layout.list_item, null)
         }
         //get the string item from the position "position" from array list to put it on the TextView
