@@ -14,7 +14,7 @@ import java.net.Socket
  * Created by Sina on 12/26/2016.
  */
 
-class TCPClient(listener: OnMessageReceived) {
+class TCPClient(val serverIP: String,val serverPort: String, listener: OnMessageReceived) {
     private var serverMessage: String? = null
     private var mMessageListener: OnMessageReceived? = null
     private var mRun = false
@@ -22,8 +22,6 @@ class TCPClient(listener: OnMessageReceived) {
     internal var printWriter: PrintWriter? = null
     internal var bufferedReader: BufferedReader? = null
 
-    private val serverIP = "192.168.8.102" //your computer IP address
-    private val serverPort = 2020
 
     //Declare the interface. The method messageReceived(String message) will must be implemented bufferedReader the MyActivity
     //class at on asynckTask doInBackground
@@ -61,7 +59,7 @@ class TCPClient(listener: OnMessageReceived) {
             Log.e("TCP Client", "C: Connecting...")
 
             //create a socket to make the connection with the server
-            val socket = Socket(serverAddr, serverPort)
+            val socket = Socket(serverAddr, serverPort.toInt())
 
             try {
 
